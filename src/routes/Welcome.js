@@ -1,21 +1,30 @@
 import Compose from "../components/Compose";
-import Logout from "../components/Logout";
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sendMailData } from "../store/mail-actions";
+import Inbox from "../components/Inbox";
+import Sent from "../components/Sent";
+import Navigation from "../components/Navigation";
+import { Routes, Route } from "react-router-dom";
 
 const Welcome = () => {
+    const mails = useSelector((state)=> state.mail.mails); 
+    const dispatch = useDispatch(); 
+    console.log(mails);
+    useEffect(()=> {
+        dispatch(sendMailData(mails)); 
+    }, [mails, dispatch])
   return (
     <div>
-      <div
-        style={{ borderBottom: "1px solid black" }}
-        className="d-flex justify-content-end"
-      >
-        <h1 className="text-center p-3 px-5 mx-5">Welcome to Mailbox Client</h1>
-        <div className="py-4 mx-5 px-5">
-          <Logout />
+      <Navigation />
+      <div className="d-flex justify-content-center">
+        <Routes >
+          <Route path="compose" element={<Compose />} />
+          <Route path="inbox" element={<Inbox />} />
+          <Route path="sent" element={<Sent />} />
+        </Routes>
         </div>
-      </div>
-      <div className="d-flex justify-content-center mt-3" >
-        <Compose />
-      </div>
     </div>
   );
 };
