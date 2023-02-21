@@ -69,6 +69,10 @@ const SignUp = () => {
         })
         .then((data) => {
           console.log(data);
+          console.log(data.idToken);
+          console.log(data.email);
+          localStorage.setItem('email', data.email); 
+          localStorage.setItem('idToken', data.idToken);
           console.log("Logged in successfully!");
           nav("/welcome");
         })
@@ -108,11 +112,13 @@ const SignUp = () => {
             "User Registered Successfully please login with the same details"
           );
           switchStatus();
-          emailRef.current.value = "";
-          passwordRef.current.value = "";
-          confirmPasswordRef.current.value = "";
         })
         .catch((err) => alert(err));
+
+
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+        confirmPasswordRef.current.value = "";
     }
   };
   return (
