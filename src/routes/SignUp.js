@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const confirmPasswordRef = useRef("");
   const [login, showlogin] = useState(true);
+  const nav = useNavigate();
 
   const switchStatus = () => {
     showlogin((prev) => !prev);
@@ -68,6 +70,7 @@ const SignUp = () => {
         .then((data) => {
           console.log(data);
           console.log("Logged in successfully!");
+          nav("/welcome");
         })
         .catch((err) => alert(err));
     } else if (!login) {
@@ -105,6 +108,9 @@ const SignUp = () => {
             "User Registered Successfully please login with the same details"
           );
           switchStatus();
+          emailRef.current.value = "";
+          passwordRef.current.value = "";
+          confirmPasswordRef.current.value = "";
         })
         .catch((err) => alert(err));
     }
