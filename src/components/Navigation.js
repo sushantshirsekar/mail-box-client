@@ -22,7 +22,7 @@ const Navigation = (props) => {
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink to="inbox" className="mx-5 py-2" style={{textDecoration:'none', color:'black'}}>
+              <NavLink to="" className="mx-5 py-2" style={{textDecoration:'none', color:'black'}}>
                 Inbox
               </NavLink>
               <NavLink to="compose"  className="mx-5 py-2" style={{textDecoration:'none', color:'black'}}>

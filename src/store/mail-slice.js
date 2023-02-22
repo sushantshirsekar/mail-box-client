@@ -2,8 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mailSlice = createSlice({
   name: "mail",
-  initialState: { mails: [] },
+  initialState: { mails: [] , changed: false},
   reducers: {
+    replaceMail(state, action){
+        state.mails = action.payload; 
+    }, 
     addMail(state, action) {
       const data = action.payload;
       state.mails.push({
@@ -12,9 +15,21 @@ const mailSlice = createSlice({
         from: data.from,
         message: data.message,
         to: data.to,
+        read: data.read, 
       });
-      console.log(state.mails);
+      state.changed = true; 
     },
+    changeReadStatus(state, action){
+      let id = action.payload; 
+      state.mails.map((mail)=> {
+        if(id === mail.id){
+          mail.read = false; 
+        }
+      })
+    },
+
+
+
   },
 });
 

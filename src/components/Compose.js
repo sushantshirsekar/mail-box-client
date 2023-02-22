@@ -29,6 +29,7 @@ const Compose = () => {
       from: from,
       to: emailRef.current.value,
       message: message,
+      read: false, 
     };
     dispatch(mailActions.addMail(data));
     console.log(mails);

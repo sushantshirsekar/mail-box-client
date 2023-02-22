@@ -76,7 +76,7 @@ const SignUp = () => {
           console.log("Logged in successfully!");
           nav("/welcome");
         })
-        .catch((err) => alert(err));
+        .catch((err) => console.log(err));
     } else if (!login) {
       fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyArkdoKeu7aXexY8yB9nS4u0bSF2J3mugs",
