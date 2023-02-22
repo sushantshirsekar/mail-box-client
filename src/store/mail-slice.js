@@ -23,7 +23,7 @@ const mailSlice = createSlice({
       let id = action.payload; 
       state.mails.map((mail)=> {
         if(id === mail.id){
-          mail.read = false; 
+          mail.read = true; 
         }
       })
     },
