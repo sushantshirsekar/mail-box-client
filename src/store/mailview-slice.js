@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const mailViewSlice = createSlice({
   name: "mail",
   initialState: {
-    mailview: [JSON.parse(localStorage.getItem("mailview"))] || [],
-    sentview: [JSON.parse(localStorage.getItem("sentview"))] || [],
+    mailview: [],
+    sentview: [],
   },
   reducers: {
     reset(state){

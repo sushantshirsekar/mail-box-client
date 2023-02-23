@@ -9,7 +9,7 @@ const mailSlice = createSlice({
     }, 
     addMail(state, action) {
       const data = action.payload;
-      state.mails.push({
+      state.mails.unshift({
         id: data.id,
         subject: data.subject,
         from: data.from,

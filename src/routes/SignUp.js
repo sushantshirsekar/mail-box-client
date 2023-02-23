@@ -75,6 +75,7 @@ const SignUp = () => {
           localStorage.setItem('idToken', data.idToken);
           console.log("Logged in successfully!");
           nav("/welcome");
+          localStorage.setItem('sentview', []);
         })
         .catch((err) => console.log(err));
     } else if (!login) {
