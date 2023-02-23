@@ -19,59 +19,85 @@ const Inbox = () => {
     dispatch(mailviewActions.viewMail(data));
     dispatch(mailActions.changeReadStatus(id));
     console.log(mails);
-    nav("/welcome/view")
+    nav("/welcome/view");
+  };
+
+  const deleteHandler = (id) => {
+    console.log(id);
+    dispatch(mailActions.deleteMail(id));
   };
   return (
     <div>
       {console.log(email)}
-      { (
-        <ListGroup style={{ width: "70rem", cursor:'pointer' }}>
+      {
+        <ListGroup style={{ width: "70rem", cursor: "pointer" }}>
           {mails.map((mail) => {
             if (mail.to === email) {
               if (mail.read === false) {
                 return (
-                  <ListGroup.Item
-                    style={{ background: "lightgrey" }}
-                    as="li"
-                    className="d-flex justify-content-between align-items-start"
-                    onClick={() => emailOpenHandler(mail, mail.id)}
-                  >
-                    <div
-                      className="m-3"
-                      style={{
-                        color: "blue",
-                        background: "blue",
-                        border: "1px solid blue",
-                        borderRadius: "1000px",
-                        height: "9px",
-                        width: "7px",
-                      }}
-                    ></div>
-                    <div className="ms-2 me-auto">
-                      <div className="fw-bold">Subject: {mail.subject}</div>
-                      From: {mail.from}
+                  <div className="d-flex" style={{background: 'lightgrey'}}>
+                    <ListGroup.Item
+                      style={{background: 'lightgrey',width:'60rem', border:'none'}}
+
+                      as="li"
+                      className="d-flex justify-content-between align-items-start"
+                      onClick={() => emailOpenHandler(mail, mail.id)}
+                    >
+                      <div
+                        className="m-3"
+                        style={{
+                          color: "blue",
+                          background: "blue",
+                          border: "1px solid blue",
+                          borderRadius: "1000px",
+                          height: "9px",
+                          width: "7px",
+                        }}
+                      ></div>
+                      <div className="ms-2 me-auto">
+                        <div className="fw-bold">Subject: {mail.subject}</div>
+                        From: {mail.from}
+                      </div>
+                    </ListGroup.Item>
+                    <div>
+                      <Button
+                        onClick={() => deleteHandler(mail.id)}
+                        variant="danger"
+                      >
+                        Delete
+                      </Button>
                     </div>
-                  </ListGroup.Item>
+                  </div>
                 );
               } else {
                 return (
-                  <ListGroup.Item
-                    style={{ background: "lightgrey" }}
-                    as="li"
-                    className="d-flex justify-content-between align-items-start"
-                    onClick={() => emailOpenHandler(mail, mail.id)}
-                  >
-                    <div className="ms-2 me-auto">
-                      <div className="fw-bold">Subject: {mail.subject}</div>
-                      From: {mail.from}
+                  <div className="d-flex">
+                    <ListGroup.Item
+                      style={{width:'60rem', border:'none'}}
+                      as="li"
+                      className="d-flex justify-content-between align-items-start"
+                      onClick={() => emailOpenHandler(mail, mail.id)}
+                    >
+                      <div className="ms-2 me-auto">
+                        <div className="fw-bold">Subject: {mail.subject}</div>
+                        From: {mail.from}
+                      </div>
+                    </ListGroup.Item>
+                    <div>
+                      <Button
+                        onClick={() => deleteHandler(mail.id)}
+                        variant="danger"
+                      >
+                        Delete
+                      </Button>
                     </div>
-                  </ListGroup.Item>
+                  </div>
                 );
               }
             }
           })}
         </ListGroup>
-      )}
+      }
     </div>
   );
 };

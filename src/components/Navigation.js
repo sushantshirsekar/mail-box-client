@@ -3,8 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from "react-router-dom";
+import { Badge } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Navigation = (props) => {
+  const mails = useSelector((state)=> state.mail.mails); 
+  let count = localStorage.getItem('count') || 0; 
   return (
     <>
     {props.children}
@@ -23,7 +27,7 @@ const Navigation = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavLink to="" className="mx-5 py-2" style={{textDecoration:'none', color:'black'}}>
-                Inbox
+                Inbox 
               </NavLink>
               <NavLink to="compose"  className="mx-5 py-2" style={{textDecoration:'none', color:'black'}}>
                 Compose

@@ -29,7 +29,10 @@ const mailSlice = createSlice({
     },
 
 
-
+    deleteMail (state, action){
+      const deleteId = action.payload; 
+      state.mails = state.mails.filter((mail)=> mail.id !== deleteId); 
+    }
   },
 });
 

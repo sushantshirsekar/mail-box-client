@@ -1,6 +1,6 @@
 import Compose from "../components/Compose";
 
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMailData, sendMailData } from "../store/mail-actions";
 import Inbox from "../components/Inbox";
@@ -8,6 +8,7 @@ import Sent from "../components/Sent";
 import Navigation from "../components/Navigation";
 import { Routes, Route } from "react-router-dom";
 import MailView from "../components/MailView";
+import SentView from "../components/SentView";
 
 let initState = true;
 
@@ -16,13 +17,13 @@ const Welcome = () => {
   const dispatch = useDispatch();
   console.log(mails);
   useEffect(() => {
-    dispatch(fetchMailData()); 
+    dispatch(fetchMailData());
   }, [dispatch]);
 
   useEffect(() => {
     if (initState) {
-      initState = false; 
-      return; 
+      initState = false;
+      return;
     }
     dispatch(sendMailData(mails));
   }, [mails, dispatch]);
@@ -35,7 +36,8 @@ const Welcome = () => {
           <Route path="compose" element={<Compose />} />
           <Route path="/*" element={<Inbox />} />
           <Route path="sent" element={<Sent />} />
-        <Route path="view" element={<MailView />}/>
+          <Route path="view" element={<MailView />} />
+          <Route path="sentview" element={<SentView />} />
         </Routes>
       </div>
     </div>
